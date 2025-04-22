@@ -1,0 +1,33 @@
+az aks get-credentials --resource-group Azure-cni-aks-rg --name azure-cni-aks --overwrite-existing
+
+kubectl get deploy nginx-cas 
+
+kubectl create deployment nginx-cas \
+  --image=nginx:latest \
+  --replicas=1 
+
+kubectl expose deploy 
+
+kubectl expose deploy nginx-cas --port 80  --type LoadBalancer
+
+Updating DNS label using annotation 
+
+https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard#customizations-via-kubernetes-annotations
+
+service.beta.kubernetes.io/azure-dns-label-name: test-nginx-web
+
+metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: test-nginx-web
+
+curl http://test-nginx-web.swedencentral.cloudapp.azure.com/
+
+Restrict inbound traffic to specific IP ranges
+
+curl ifconfig.me
+
+spec:
+  loadBalancerSourceRanges:
+  - MY_EXTERNAL_IP_RANGE
+
+Removing parameters
