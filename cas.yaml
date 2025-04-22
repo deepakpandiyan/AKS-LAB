@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-cas
+  labels:
+    app: nginx-cas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-cas
+  template:
+    metadata:
+      labels:
+        app: nginx-cas
+    spec:
+      nodeSelector:
+        agentpool: cas
+      containers:
+        - name: nginx
+          image: nginx:latest
+          resources:
+            requests:
+              memory: "2Gi"
+            limits:
+              memory: "2Gi"
+          ports:
+            - containerPort: 80
+
