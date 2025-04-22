@@ -1,0 +1,23 @@
+Cluster Autoscaler 
+
+kubectl get cm -n kube-system 
+
+kubectl describe cm cluster-autoscaler-status -n kube-system
+
+az aks nodepool add -g Azure-cni-aks-rg --cluster-name azure-cni-aks --name  cas --enable-cluster-autoscaler --min-count 1 --max-count 5 -c 1 
+
+/mnt/c/Users/pdeepak/Desktop/Tep-25
+
+cat cas.yaml
+
+kubectl describe node 
+
+  Type     Reason            Age   From                Message
+  ----     ------            ----  ----                -------
+  Warning  FailedScheduling  31s   default-scheduler   0/5 nodes are available: 1 Insufficient memory, 4 node(s) didn't match Pod's node affinity/selector. preemption: 0/5 nodes are available: 1 No preemption victims found for incoming pod, 4 Preemption is not helpful for scheduling.
+  Normal   TriggeredScaleUp  19s   cluster-autoscaler  pod triggered scale-up: [{aks-cas-41967414-vmss 1->2 (max: 5)}] 
+
+kubectl get cm -n kube-system
+
+kubectl describe cm cluster-autoscaler-status -n kube-system 
+
