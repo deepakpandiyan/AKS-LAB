@@ -1,0 +1,10 @@
+az aks create  \
+    --resource-group nat-cluster-rg \
+    --name nat-cluster \
+    --node-count 1 \
+    --outbound-type managedNATGateway \
+    --nat-gateway-managed-outbound-ip-count 2 \
+    --nat-gateway-idle-timeout 4
+
+az aks get-credentials --resource-group nat-cluster-rg --name nat-cluster --overwrite-existing
+
