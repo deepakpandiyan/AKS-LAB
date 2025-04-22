@@ -1,0 +1,17 @@
+az aks get-versions --location swedencentral --output table
+
+az aks get-credentials --resource-group Azure-cni-aks-rg --name azure-cni-aks --overwrite-existing
+
+
+Cluster upgrade on portal 
+
+az aks upgrade --resource-group myResourceGroup --name myAKSCluster --kubernetes-version <KUBERNETES_VERSION>
+
+kubectl get nodes
+
+az aks update --resource-group myResourceGroup --name myAKSCluster --auto-upgrade-channel stable
+
+# Set max surge for a new node pool
+
+az aks nodepool add --name mynodepool --resource-group MyResourceGroup --cluster-name MyManagedCluster --max-surge 33%
+
